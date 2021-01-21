@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AMREM_Backup.ViewModels"
+             xmlns:local="clr-namespace:AMREM_Backup"
+             x:Class="AMREM_Backup.MainPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid Padding="10" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="SetNetGo Backup" FontSize="Title"/>
+            
+            <Grid Grid.Row="1"  BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="{Binding DestinationPath}" LineBreakMode="HeadTruncation" VerticalTextAlignment="Center"/>
+
+                <ImageButton Grid.Column="1" Command="{Binding OpenFolder}" Source="{local:ImageResource AMREM_Backup.Resources.folder.png}" WidthRequest="30" HeightRequest="30"  BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+            </Grid>
+            
+            <Grid Grid.Row="2"  BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Grid.Column="0" Command="{Binding AddItem}" Source="{local:ImageResource AMREM_Backup.Resources.add.png}" WidthRequest="30" HeightRequest="30" BackgroundColor="Black"/>
+                <!--<ImageButton Grid.Column="1" Command="{Binding OpenFolder}" Source="{local:ImageResource AMREM_Backup.Resources.add.png}" WidthRequest="30" HeightRequest="30" BackgroundColor="Black"/>-->
+            </Grid>
+
+            <ListView Grid.Row="3" HasUnevenRows="True" ItemsSource="{Binding Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+
+                                <Frame Grid.Row="0" CornerRadius="2" Padding="3">
+                                    <Grid Padding="10" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="0.5*"/>
+                                                <ColumnDefinition Width="0.5*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <ImageButton Grid.Row="1" Grid.Column="3"  Command="{Binding RemoveItem}" Source="{local:ImageResource AMREM_Backup.Resources.remove.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+                                            <Label Grid.Row="0" Grid.Column="3" Text="Remove" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+
+                                            <ImageButton Grid.Row="1" Grid.Column="2"  Command="{Binding ResetSettings}" Source="{local:ImageResource AMREM_Backup.Resources.reset_settings.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+                                            <Label Grid.Row="0" Grid.Column="2" Text="Reset" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+
+
+
+                                            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HorizontalOptions="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                
+                                                <Label Grid.Row="0" Grid.Column="0" Text="Download" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>   
+                                                
+                                                <ImageButton Grid.Row="1" Grid.Column="0"  Command="{Binding GetDebugFile}" Source="{local:ImageResource AMREM_Backup.Resources.download.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+
+                                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding PercentComplete}" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>                                            
+                                            </Grid>
+
+                                        </Grid>
+                                        
+                                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="IP Address/Host"/>
+                                        <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding IPAddress}" IsEnabled="{Binding IsEnabled}" Placeholder="IP Address/Host"/>
+
+
+                                        <Label Grid.Row="3" Grid.Column="0" Text="User Name"/>
+                                        <Entry Grid.Row="4" Grid.Column="0" Text="{Binding UserName}" IsEnabled="{Binding IsEnabled}" Placeholder="User Name" PlaceholderColor="LightGray"/>
+
+                                        <Label Grid.Row="3" Grid.Column="1" Text="Password"/>
+                                        <Entry Grid.Row="4" Grid.Column="1" Text="{Binding Password}" IsEnabled="{Binding IsEnabled}" Placeholder="Password" IsPassword="True" PlaceholderColor="LightGray"/>
+
+
+                                        <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="File Name"/>
+                                        <Entry Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DestinationFileName}" IsEnabled="{Binding IsEnabled}" Placeholder="Custom File Name"/>
+
+                                        <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DestinationFileNameFormatted}" VerticalTextAlignment="Start"/>
+
+                                    </Grid>
+                                </Frame>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+
+
+</ContentPage>
