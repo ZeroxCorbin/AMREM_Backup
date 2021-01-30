@@ -98,18 +98,18 @@ namespace AMREM_Backup.MobileClasses
         }
         private void RetrieveBackups()
         {
-            foreach (MobileDebugInfoSettings mbd in RobotConnectionData)
-            {
-                Console.WriteLine($"Retrieving debug file from IP: {mbd.IPAddress}");
-                if (MobileDebugInfoDownload.GetDebugFile(mbd.IPAddress, mbd.UserName, mbd.Password, mbd.DestinationPath))
-                {
-                    Console.WriteLine($"Debug file saved to: {mbd.DestinationPath}");
-                }
-                else
-                {
-                    Console.WriteLine($"ERROR: Downloading debug file from IP: {mbd.IPAddress}");
-                }
-            }
+            //foreach (MobileDebugInfoSettings mbd in RobotConnectionData)
+            //{
+            //    Console.WriteLine($"Retrieving debug file from IP: {mbd.IPAddress}");
+            //    if (MobileDebugInfoDownload.GetDebugFile(mbd.IPAddress, mbd.UserName, mbd.Password, mbd.DestinationPath))
+            //    {
+            //        Console.WriteLine($"Debug file saved to: {mbd.DestinationPath}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"ERROR: Downloading debug file from IP: {mbd.IPAddress}");
+            //    }
+            //}
 
         }
 

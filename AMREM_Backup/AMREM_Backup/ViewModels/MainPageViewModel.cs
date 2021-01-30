@@ -25,6 +25,7 @@ namespace AMREM_Backup.ViewModels
             return true;
         }
 
+
         public string Title { get; } = "AMREM Backup";
         public string DestinationPath { get => Path.Combine(FileSystem.AppDataDirectory, "backups"); }
 
@@ -38,7 +39,13 @@ namespace AMREM_Backup.ViewModels
         public MainPageViewModel()
         {
             foreach (MainPageItemViewModel mpvi in Items)
+            {
+                mpvi.Message = string.Empty;
+                mpvi.PercentComplete = 0;
+
                 mpvi.RemoveItemEvent += Mpvi_RemoveItemEvent;
+            }
+
 
             AddItem = new Command(() =>
             {

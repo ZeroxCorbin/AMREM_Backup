@@ -20,6 +20,7 @@ namespace AMREM_Backup.MobileClasses
             OnPropertyChanged(propertyName);
             return true;
         }
+        public void InvokePropertyChanged(object sender, string propertyName = null)=> PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(propertyName));
 
         private string _IPAddress;
         private int _Port;

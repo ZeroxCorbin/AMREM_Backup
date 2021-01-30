@@ -84,18 +84,12 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
+                                                <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
 
-                                            <ImageButton Grid.Row="1" Grid.Column="3"  Command="{Binding RemoveItem}" Source="{local:ImageResource AMREM_Backup.Resources.remove.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
-                                            <Label Grid.Row="0" Grid.Column="3" Text="Remove" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
-
-                                            <ImageButton Grid.Row="1" Grid.Column="2"  Command="{Binding ResetSettings}" Source="{local:ImageResource AMREM_Backup.Resources.reset_settings.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
-                                            <Label Grid.Row="0" Grid.Column="2" Text="Reset" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
-
-
-
-                                            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HorizontalOptions="Center">
+                                            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
                                                 <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
@@ -103,14 +97,23 @@
                                                     <RowDefinition/>
                                                     <RowDefinition/>
                                                 </Grid.RowDefinitions>
-                                                
-                                                <Label Grid.Row="0" Grid.Column="0" Text="Download" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>   
-                                                
-                                                <ImageButton Grid.Row="1" Grid.Column="0"  Command="{Binding GetDebugFile}" Source="{local:ImageResource AMREM_Backup.Resources.download.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
 
-                                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding PercentComplete}" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>                                            
+                                                <ActivityIndicator Grid.Row="1" Grid.Column="0" IsRunning="{Binding IsRunning}"/>
+                                                
+                                                <Label Grid.Row="0" Grid.Column="1" Text="Download" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+
+                                                <ImageButton Grid.Row="1" Grid.Column="1"  Command="{Binding GetDebugFile}" Source="{local:ImageResource AMREM_Backup.Resources.download.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+
+                                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding PercentComplete}" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
                                             </Grid>
+                                            
+                                            <ImageButton Grid.Row="1" Grid.Column="1"  Command="{Binding ResetSettings}" Source="{local:ImageResource AMREM_Backup.Resources.reset_settings.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="Reset" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>     
+                                            
+                                            <ImageButton Grid.Row="1" Grid.Column="2"  Command="{Binding RemoveItem}" Source="{local:ImageResource AMREM_Backup.Resources.remove.png}" IsEnabled="{Binding IsEnabled}" WidthRequest="24" HeightRequest="24" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"/>
+                                            <Label Grid.Row="0" Grid.Column="2" Text="Remove" VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
 
+                                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Text="{Binding Message}" IsVisible="{Binding IsMessage}" TextColor="{AppThemeBinding Light=Salmon, Dark=Yellow}"/>
                                         </Grid>
                                         
                                         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="IP Address/Host"/>
